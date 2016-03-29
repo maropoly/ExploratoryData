@@ -1,4 +1,11 @@
 
+#include ggplot2 library
+
+library(ggplot2)
+
+## read data
+NEI <- readRDS("./exdata-data-NEI_data/summarySCC_PM25.rds")
+SCC <- readRDS("./exdata-data-NEI_data/Source_Classification_Code.rds")
 
 
 vehicles <- grepl("vehicle", SCC$SCC.Level.Two, ignore.case=TRUE)
@@ -19,3 +26,10 @@ plot6 <- ggplot(bothNEI, aes(x=factor(year), y=Emissions, fill=city)) +
         labs(title=expression("PM"[2.5]*" Motor Vehicle Source Emissions in Baltimore & LA, 1999-2008"))
 
 print(plot6)
+
+
+
+#copy plot to folder
+dev.copy(png, file="plot6.png", width=640, height=640)
+dev.off()
+cat("Plot6.png has been saved in", getwd())
